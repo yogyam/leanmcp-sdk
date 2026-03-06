@@ -4,13 +4,32 @@
  * Builds UI components and compiles TypeScript for production deployment.
  * Does NOT start the server - use 'leanmcp start' or 'node dist/main.js' after building.
  */
-import { spawn } from 'child_process';
+import { execa } from 'execa';
 import ora from 'ora';
 import path from 'path';
 import fs from 'fs-extra';
 import { logger } from '../logger';
 import { scanUIApp, buildUIComponent, writeUIManifest } from '../vite';
 import { generateSchemaMetadata } from '../schema-extractor';
+
+/**
+ * Run TypeScript compiler with reliable cross-platform output capture
+ */
+async function runTypeScriptCompiler(cwd: string): Promise<void> {
+  try {
+    await execa('npx', ['tsc'], {
+      cwd,
+      preferLocal: true,
+      // Use inherit so tsc output displays live in terminal
+      stdout: 'inherit',
+      stderr: 'inherit',
+    });
+  } catch (error: any) {
+    // When using inherit, output is already shown in terminal
+    // Just throw with exit code info
+    throw new Error(`tsc exited with code ${error.exitCode ?? 1}`);
+  }
+}
 
 export async function buildCommand() {
   const cwd = process.cwd();
@@ -79,30 +98,11 @@ export async function buildCommand() {
   const tscSpinner = ora('Compiling TypeScript...').start();
 
   try {
-    await new Promise<void>((resolve, reject) => {
-      const tsc = spawn('npx', ['tsc'], {
-        cwd,
-        stdio: 'pipe',
-        shell: true,
-      });
-
-      let stderr = '';
-      tsc.stderr?.on('data', (data) => {
-        stderr += data;
-      });
-
-      tsc.on('close', (code) => {
-        if (code === 0) resolve();
-        else reject(new Error(stderr || `tsc exited with code ${code}`));
-      });
-
-      tsc.on('error', reject);
-    });
-
+    await runTypeScriptCompiler(cwd);
     tscSpinner.succeed('TypeScript compiled');
   } catch (error) {
     tscSpinner.fail('TypeScript compilation failed');
-    logger.error(error instanceof Error ? error.message : String(error));
+    // Output already shown via stderr: 'inherit', just exit
     process.exit(1);
   }
 

@@ -7,11 +7,6 @@
 </p>
 
 <p align="center">
-  
-  
-</p>
-
-<p align="center">
   <a href="https://github.com/LeanMCP/leanmcp-sdk/blob/main/LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-green.svg?style=flat-square&logo=opensourceinitiative&logoColor=white" alt="MIT License" />
   </a>
@@ -25,7 +20,7 @@
     <img src="https://img.shields.io/badge/Follow-@LeanMCP-1DA1F2?style=flat-square&logo=x&logoColor=white" alt="Follow on X" />
   </a>
   <a href="https://discord.com/invite/DsRcA3GwPy">
-    <img src="https://img.shields.io/badge/Discord-406%20members-5865F2?style=flat-square&logo=discord&logoColor=white" alt="Discord Community" />
+    <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fdiscord.com%2Fapi%2Fv9%2Finvites%2FDsRcA3GwPy%3Fwith_counts%3Dtrue&query=%24.approximate_member_count&logo=discord&logoColor=white&style=flat-square&label=Discord&suffix=%20members&color=5865F2" alt="Discord Community" />
   </a>
   <br/>
   <a href="https://github.com/leanmcp/modelcontextprotocol#readme">
@@ -52,10 +47,27 @@
   </a>
 </p>
 
-# LeanMCP Core (SDK + CLI)
+# LeanMCP SDK: Production-Ready Infra for MCP Servers.
+ **Build and Deploy Scalable MCP Servers with Full Backend Capabilities**
 
-TypeScript toolkit for building **Model Context Protocol (MCP) servers**
-with production-minded defaults.
+---
+
+**Production-grade support:**
+
+✅ Authentication 
+✅ Multi-tenant isolation 
+✅ Request logging
+✅ Observability & Monitoring
+✅ Private Cloud deployment
+
+---
+
+**Ideal for teams building:**
+- Agent platforms
+- Customer-facing intelligent workflows
+- Multi-tenant SaaS AI systems
+
+---
 
 **Links**
 
@@ -63,204 +75,40 @@ with production-minded defaults.
 - Build & Deploy: https://ship.leanmcp.com  
 - Observability Platform: https://app.leanmcp.com  
 - npm packages: https://www.npmjs.com/search?q=%40leanmcp  
-- GitHub org: https://github.com/LeanMCP  
+- GitHub org: https://github.com/LeanMCP
 
 ---
 
-## What is LeanMCP Core?
+## Thanks for your Interest !
 
-LeanMCP Core is a **TypeScript SDK + CLI** for building
-**Model Context Protocol (MCP) servers** that are intended to run in production.
+If you're:
 
-It focuses on the server side of MCP:
-tools, resources, prompts, schemas, and runtime behavior.
+- An Infra / AI / DevTool developer — you're warmly welcome to contribute ideas or code.
+- Building your own Agent platform — reach out for enterprise-grade deployment support.
 
-LeanMCP does not replace the MCP specification.
-It provides infrastructure and conventions MCP servers need
-once they move beyond local demos.
+For partnerships & business inquiries: **founders@leanmcp.com**
 
-
-
----
-
-## Quick Start
-
-Create and run a local MCP server in seconds:
-
-```bash
-npx @leanmcp/cli create my-server
-cd my-server
-npm run dev
-```
-
-Your MCP server is now running with:
-
-* schema validation
-* tool and resource registration
-* a predictable local development workflow
-
----
-
-## Packages (What to install)
-
-LeanMCP is modular.
-Start with the core packages, then add capabilities as needed.
-
-### Required for every MCP server
-
-| Package                                                      | Purpose                                             | Install                                             |
-| ------------------------------------------------------------ | --------------------------------------------------- | --------------------------------------------------- |
-| [@leanmcp/cli](https://www.npmjs.com/package/@leanmcp/cli)   | Project scaffolding and local dev / deploy workflow | `npm install -g @leanmcp/cli` or `npx @leanmcp/cli` |
-| [@leanmcp/core](https://www.npmjs.com/package/@leanmcp/core) | MCP server runtime, decorators, schema validation   | `npm install @leanmcp/core`                         |
-
-### Optional capability packages
-
-| Package                                                                        | Purpose                                       | When to use                                     | Install                              |
-| ------------------------------------------------------------------------------ | --------------------------------------------- | ----------------------------------------------- | ------------------------------------ |
-| [@leanmcp/auth](https://www.npmjs.com/package/@leanmcp/auth)                   | Authentication and access control             | Real users, permissions, multi-user MCP servers | `npm install @leanmcp/auth`          |
-| [@leanmcp/elicitation](https://www.npmjs.com/package/@leanmcp/elicitation)     | Structured user input during execution        | Tools need guided or multi-step input           | `npm install @leanmcp/elicitation`   |
-| [@leanmcp/ui](https://www.npmjs.com/package/@leanmcp/ui)                       | UI components for MCP Apps                    | Interactive MCP experiences (advanced)          | `npm install @leanmcp/ui`            |
-| [@leanmcp/env-injection](https://www.npmjs.com/package/@leanmcp/env-injection) | Request-scoped environment / secret injection | Multi-tenant secrets, per-request config        | `npm install @leanmcp/env-injection` |
-| [@leanmcp/utils](https://www.npmjs.com/package/@leanmcp/utils)                 | Shared utilities                              | Extending or building on LeanMCP internals      | `npm install @leanmcp/utils`         |
-
-If you are unsure where to start,
-install **@leanmcp/cli** and **@leanmcp/core** only.
-
----
-
-## How the pieces fit
-
-* `npm install -g @leanmcp/cli` or `npx @leanmcp/cli`
-  Scaffolds projects and runs local development and deployment workflows.
-
-* `npm install @leanmcp/core`
-  The MCP server runtime: decorators, schema validation, and conventions.
-
-Optional capabilities layer on top of the core:
-
-* `npm install @leanmcp/auth` for identity and permissions
-* `npm install @leanmcp/elicitation` for structured user input
-* `npm install @leanmcp/ui` for MCP-native UI surfaces
-* `npm install @leanmcp/env-injection` for request-scoped secrets
-
----
-
-## Choose your path (common setups)
-
-<table>
-<tr>
-<td width="33%" align="left" valign="top">
-
-### 1. Minimal MCP server (local development)
-
-* Install: [`@leanmcp/cli`](https://www.npmjs.com/package/@leanmcp/cli), [`@leanmcp/core`](https://www.npmjs.com/package/@leanmcp/core) 
-* Use when: building tools, resources, and prompts locally
-
-</td>
-<td width="33%" align="left" valign="top">
-
-### 2. Authenticated MCP server
-
-* Add: [`@leanmcp/auth`](https://www.npmjs.com/package/@leanmcp/auth) 
-* Use when: MCP server has real users and access control
-
-</td>
-<td width="33%" align="left" valign="top">
-
-### 3. Interactive tool execution
-
-* Add: [`@leanmcp/elicitation`](https://www.npmjs.com/package/@leanmcp/elicitation) 
-* Use when: tools need structured or multi-step user input
-
-</td>
-</tr>
-<tr>
-<td width="33%" align="left" valign="top">
-
-### 4. MCP Apps / UI (advanced)
-
-* Add: [`@leanmcp/ui`](https://www.npmjs.com/package/@leanmcp/ui) 
-* Use when: building interactive MCP interfaces, not just JSON output
-
-</td>
-<td width="33%" align="left" valign="top">
-
-### 5. Multi-tenant secrets (advanced)
-
-* Add: [`@leanmcp/env-injection`](https://www.npmjs.com/package/@leanmcp/env-injection) 
-* Use when: secrets vary per user or per request
-
-</td>
-<td width="33%" align="left" valign="top">
-
-</td>
-</tr>
-</table>
-
----
-
-## Common patterns
-
-### Define a tool
-
-```ts
-@tool("search_docs")
-async searchDocs(query: string) {
-  return await this.vectorStore.search(query)
-}
-```
-
-### Require authentication
-
-```ts
-@requireAuth()
-@tool("get_user_data")
-async getUserData() {
-  ...
-}
-```
-
-### Ask for structured input
-
-```ts
-const input = await elicit({
-  type: "form",
-  fields: [...]
-})
-```
-
-These snippets show common patterns only.
-Full API details live in the documentation.
+If you find this project valuable, please consider giving us a GitHub star 🌟 !
 
 ---
 
 ## Table of Contents
 
-- [Installation](#installation)
 - [Quick Start](#quick-start)
+- [Installation & Packages](#installation--packages)
 - [Core Concepts](#core-concepts)
-- [CLI Commands](#cli-commands)
-- [Decorators](#decorators)
-- [Project Structure](#project-structure)
-- [API Reference](#api-reference)
-- [Examples](#examples)
-- [Development](#development)
+- [Common Patterns](#common-patterns)
+- [Detailed Reference](#detailed-reference)
+  - [CLI Commands](#cli-commands)
+  - [Decorators](#decorators)
+  - [Project Structure](#project-structure)
+  - [API Reference](#api-reference)
+  - [Examples](#examples)
+  - [Development](#development)
 - [Contributing](#contributing)
+- [Business Collaboration](#business-collaboration-what-can-we-do-for-you)
 
-## Installation
-
-### Global CLI Installation
-
-```bash
-npm install -g @leanmcp/cli
-```
-
-### Project-Level Installation
-
-```bash
-npm install @leanmcp/core
-npm install --save-dev @leanmcp/cli
-```
+---
 
 ## Quick Start
 
@@ -363,7 +211,45 @@ Your MCP server starts on `http://localhost:8080` with:
 - HTTP endpoint: `http://localhost:8080/mcp`
 - Health check: `http://localhost:8080/health`
 
-## Core Concepts
+---
+
+## Installation & Packages
+
+LeanMCP is modular. Start with the core packages, then add capabilities as needed.
+
+### Required for every MCP server
+
+| Package | Purpose | Install |
+| ------- | ------- | ------- |
+| [@leanmcp/cli](https://www.npmjs.com/package/@leanmcp/cli) | Project scaffolding and local dev / deploy workflow | `npm install -g @leanmcp/cli` or `npx @leanmcp/cli` |
+| [@leanmcp/core](https://www.npmjs.com/package/@leanmcp/core) | MCP server runtime, decorators, schema validation | `npm install @leanmcp/core` |
+
+### Optional capability packages
+
+| Package | Purpose | When to use | Install |
+| ------- | ------- | ----------- | ------- |
+| [@leanmcp/auth](https://www.npmjs.com/package/@leanmcp/auth) | Authentication and access control | Real users, permissions, multi-user MCP servers | `npm install @leanmcp/auth` |
+| [@leanmcp/elicitation](https://www.npmjs.com/package/@leanmcp/elicitation) | Structured user input during execution | Tools need guided or multi-step input | `npm install @leanmcp/elicitation` |
+| [@leanmcp/ui](https://www.npmjs.com/package/@leanmcp/ui) | UI components for MCP Apps | Interactive MCP experiences (advanced) | `npm install @leanmcp/ui` |
+| [@leanmcp/env-injection](https://www.npmjs.com/package/@leanmcp/env-injection) | Request-scoped environment / secret injection | Multi-tenant secrets, per-request config | `npm install @leanmcp/env-injection` |
+| [@leanmcp/utils](https://www.npmjs.com/package/@leanmcp/utils) | Shared utilities | Extending or building on LeanMCP internals | `npm install @leanmcp/utils` |
+
+### Global CLI Installation
+
+```bash
+npm install -g @leanmcp/cli
+```
+
+### Project-Level Installation
+
+```bash
+npm install @leanmcp/core
+npm install --save-dev @leanmcp/cli
+```
+
+---
+
+<details><summary><b>Core Concepts</b> (Click to expand)</summary>
 
 ### Tools
 
@@ -420,7 +306,49 @@ getStats() {
 // Resource URI: "servicename://getStats" (auto-generated)
 ```
 
-## CLI Commands
+</details>
+
+---
+
+<details><summary><b>Common Patterns</b> (Click to expand)</summary>
+
+### Define a tool
+
+```ts
+@tool("search_docs")
+async searchDocs(query: string) {
+  return await this.vectorStore.search(query)
+}
+```
+
+### Require authentication
+
+```ts
+@requireAuth()
+@tool("get_user_data")
+async getUserData() {
+  ...
+}
+```
+
+### Ask for structured input
+
+```ts
+const input = await elicit({
+  type: "form",
+  fields: [...]
+})
+```
+
+These snippets show common patterns only. Full API details live in the documentation.
+
+</details>
+
+---
+
+## Detailed Reference
+
+<details><summary><b>CLI Commands</b> (Click to expand)</summary>
 
 The LeanMCP CLI provides an interactive experience for creating and managing MCP projects.
 
@@ -468,7 +396,9 @@ leanmcp add weather
 
 For complete CLI documentation including all commands, options, and advanced usage, see [@leanmcp/cli README](./packages/cli/README.md).
 
-## Decorators
+</details>
+
+<details><summary><b>Decorators</b> (Click to expand)</summary>
 
 ### Core Decorators
 
@@ -517,7 +447,9 @@ class UserInput {
 }
 ```
 
-## Project Structure
+</details>
+
+<details><summary><b>Project Structure</b> (Click to expand)</summary>
 
 ### Main Entry Point (`main.ts`)
 
@@ -596,7 +528,9 @@ export class ServiceName {
 }
 ```
 
-## API Reference
+</details>
+
+<details><summary><b>API Reference</b> (Click to expand)</summary>
 
 ### `createHTTPServer(options | serverFactory, options?)`
 
@@ -687,7 +621,9 @@ server.registerService(new WeatherService());
 server.registerService(new PaymentService());
 ```
 
-## Examples
+</details>
+
+<details><summary><b>Examples</b> (Click to expand)</summary>
 
 ### Complete Weather Service
 
@@ -917,6 +853,9 @@ npm start
 See [examples/ecommerce-search](./examples/ecommerce-search) for full documentation and curl examples.
 
 ## Development
+</details>
+
+<details><summary><b>Development</b> (Click to expand)</summary>
 
 ### Setting Up the Monorepo
 
@@ -973,7 +912,7 @@ npm link ../../packages/cli
 npm start
 ```
 
-## Type Safety Benefits
+### Type Safety Benefits
 
 - **Compile-time validation** - Catch errors before runtime
 - **Autocomplete** - Full IntelliSense support in VS Code
@@ -981,32 +920,13 @@ npm start
 - **No duplication** - Define schemas once using TypeScript types
 - **Type inference** - Automatic schema generation from decorators
 
-## Contributing
-
-Contributions are welcome! Please follow these guidelines:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### Development Workflow
-
-```bash
-# Run tests
-npm test
-
-# Run linter
-npm run lint
-
-# Build all packages
-npm run build
-```
+</details>
 
 ---
 
-## We Actively Welcome Contributors
+## Contributing
+
+We Actively Welcome Contributors!
 
 <div align="center">
 
@@ -1029,7 +949,7 @@ npm run build
 
 <table>
 <tr>
-<td align="center" width="33%">
+<td align="left" valign="top" width="33%">
 
 **Fork & Contribute**
 
@@ -1041,19 +961,19 @@ npm run build
 [Fork Now →](https://github.com/LeanMCP/leanmcp-sdk/fork)
 
 </td>
-<td align="center" width="33%">
+<td align="left" valign="top" width="33%">
 
 **Good First Issues**
 
-- 📖 Documentation improvements
-- 🔧 Example additions
-- 🔐 Auth provider integrations
-- 🧪 Test coverage
+- Documentation improvements
+- Example additions
+- Auth provider integrations
+- Test coverage
 
 [Browse Issues →](https://github.com/LeanMCP/leanmcp-sdk/labels/good%20first%20issue)
 
 </td>
-<td align="center" width="33%">
+<td align="left" valign="top" width="33%">
 
 **Join Community**
 
@@ -1075,6 +995,30 @@ Chat with maintainers and contributors
 - **Features**: Propose and implement new capabilities
 
 See our [Contributing Guide](CONTRIBUTING.md) for detailed instructions.
+
+### Development Workflow
+
+```bash
+# Run tests
+npm test
+
+# Run linter
+npm run lint
+
+# Build all packages
+npm run build
+```
+
+---
+
+### Business Collaboration: What Can We Do for You?
+The LeanMCP founding team provides enterprise service support:
+
+- MCP Agent deployment support (SDK + CLI + deployment environment configuration)
+- Observability runtime platform (view agent call traces / usage behavior)
+- Private deployment solutions (on-demand integration with your private cloud / intranet)
+
+Contact us: **founders@leanmcp.com**
 
 ---
 

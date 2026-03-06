@@ -15,6 +15,7 @@ import {
   setDebugMode as setLoginDebugMode,
 } from './commands/login';
 import { deployCommand, setDeployDebugMode } from './commands/deploy';
+import { sendFeedbackCommand } from './commands/feedback';
 import {
   projectsListCommand,
   projectsGetCommand,
@@ -98,6 +99,14 @@ Global Options:
 `
   );
 
+// Helper to convert project-name to ProjectName for valid class names
+function toPascalCase(str: string): string {
+  return str
+    .split(/[-_\s]+/)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join('');
+}
+
 program
   .command('create <projectName>')
   .description('Create a new LeanMCP project with Streamable HTTP transport')
@@ -164,13 +173,13 @@ program
         author: '',
         license: 'MIT',
         dependencies: {
-          '@leanmcp/core': '^0.3.14',
-          '@leanmcp/ui': '^0.2.1',
-          '@leanmcp/auth': '^0.4.0',
+          '@leanmcp/core': 'latest',
+          '@leanmcp/ui': 'latest',
+          '@leanmcp/auth': 'latest',
           dotenv: '^16.5.0',
         },
         devDependencies: {
-          '@leanmcp/cli': '^0.4.0',
+          '@leanmcp/cli': 'latest',
           '@types/node': '^20.0.0',
           tsx: '^4.20.3',
           typescript: '^5.6.3',
@@ -183,7 +192,7 @@ program
         compilerOptions: {
           module: 'ESNext',
           target: 'ES2022',
-          moduleResolution: 'Node',
+          moduleResolution: 'Bundler',
           esModuleInterop: true,
           strict: true,
           skipLibCheck: true,
@@ -205,7 +214,8 @@ program
       await fs.writeFile(path.join(targetDir, 'main.ts'), mainTs);
 
       // Create an example service file
-      const exampleServiceTs = getExampleServiceTemplate(projectName);
+      const className = toPascalCase(projectName);
+      const exampleServiceTs = getExampleServiceTemplate(className);
       await fs.writeFile(path.join(targetDir, 'mcp', 'example', 'index.ts'), exampleServiceTs);
 
       const gitignore = gitignoreTemplate;
@@ -353,6 +363,7 @@ program
         logger.log('\nYou can install dependencies manually:', chalk.cyan);
         logger.log(`  cd ${projectName}`, chalk.gray);
         logger.log(`  npm install`, chalk.gray);
+        process.exit(1);
       }
     } else {
       logger.log('\nTo get started:', chalk.cyan);
@@ -363,7 +374,19 @@ program
       logger.log('To deploy to LeanMCP cloud:', chalk.cyan);
       logger.log(`  cd ${projectName}`, chalk.gray);
       logger.log(`  leanmcp deploy .`, chalk.gray);
+      logger.log('\nSend us feedback:', chalk.cyan);
+      logger.log('  leanmcp send-feedback "Great tool!"\n', chalk.gray);
     }
+  });
+
+program
+  .command('send-feedback [message]')
+  .description('Send feedback to the LeanMCP team')
+  .option('--anon', 'Send feedback anonymously')
+  .option('--include-logs', 'Include local log files with feedback')
+  .action(async (message, options) => {
+    trackCommand('send-feedback', { hasMessage: !!message, ...options });
+    await sendFeedbackCommand(message, options);
   });
 
 program
